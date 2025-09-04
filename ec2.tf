@@ -52,22 +52,39 @@ resource "aws_security_group" "my-security-group" {
 
 resource "aws_instance" "MyFirstEC2Instance" {
   ami = var.ec2-ami-id 
-  instance_type = var.ec2_instance
+  # count = 2------------------meta argumnent for multiple instance creation
+
+  for_each = tomap({
+    instance1 = "t2.micro"
+    instance2 = "t2.micro"
+  })
+
+  depends_on = [ aws_security_group.my-security-group ]
+  # instance_type = var.ec2_instance
+  instance_type = each.value
   key_name      = aws_key_pair.my-key.key_name
   security_groups = [aws_security_group.my-security-group.name]
-  user_data = file("install_nginx.sh")
+  # user_data = file("install_nginx.sh")
 
   root_block_device {
-    volume_size = 8
+    volume_size = var.env == "prod" ? 20 : var.ec2-root_block_device
     volume_type = "gp3"
     delete_on_termination = true
   }
   tags = {
-    Name = "MyFirstEC2Instance"
+    Name = each.key
+    Environment = var.env
   }
 
 }
 
+# resource "aws_instance" "new-instance" {
+#   ami           = "unknown"
+#   instance_type = "unknown"
+#   key_name      = "unknown"
+  
+  
+# }
 
     
 

@@ -17,3 +17,10 @@ variable "ec2-ami-id" {
   default     = "ami-0bc691261a82b32bc"
   
 }
+
+variable env{
+  description = "Environment"
+  type        = string
+  default     = "dev"
+  
+}
