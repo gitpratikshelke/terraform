@@ -21,6 +21,6 @@ variable "ec2-ami-id" {
 variable env{
   description = "Environment"
   type        = string
-  default     = "dev"
+  default     = "prod"
   
 }
