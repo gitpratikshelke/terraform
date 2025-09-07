@@ -18,3 +18,6 @@ terraform-provider-*
 *.key
 tera-key-ec2
 tera-key-ec2.pub
+
+
+
