@@ -1,2 +1,20 @@
+# Local .terraform directories
+.terraform/
 
+# Terraform state files
+*.tfstate
+*.tfstate.*
+crash.log
 
+# Terraform lock file (can be regenerated, but optional to ignore)
+.terraform.lock.hcl
+
+# Provider binaries
+terraform-provider-*
+
+# SSH keys and sensitive files
+*.pem
+*.pub
+*.key
+tera-key-ec2
+tera-key-ec2.pub
